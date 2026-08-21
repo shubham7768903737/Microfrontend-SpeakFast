@@ -1,0 +1,90 @@
+<div class="drawer-backdrop" [class.open]="panelOpen" (click)="close()"></div>
+
+<div class="drawer-panel" [class.open]="panelOpen">
+  <div class="drawer-header">
+    <h3>{{ isEditMode ? 'Edit Teacher' : 'Add Teacher' }}</h3>
+    <button mat-icon-button type="button" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form class="drawer-form" (ngSubmit)="submit()">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput #firstNameInput [(ngModel)]="form.firstName" name="firstName" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput [(ngModel)]="form.lastName" name="lastName" required />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="form.email" name="email" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width" *ngIf="!isEditMode">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [(ngModel)]="form.password" name="password" />
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Number</mat-label>
+        <input matInput [(ngModel)]="form.contactNumber" name="contactNumber" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Aadhar No.</mat-label>
+        <input matInput [(ngModel)]="form.aadharNo" name="aadharNo" />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Google Meet Link</mat-label>
+      <input matInput [(ngModel)]="form.googleMeetLink" name="googleMeetLink" />
+    </mat-form-field>
+
+    <div class="photo-row" *ngIf="!isEditMode">
+      <label class="field-label">Photo</label>
+      <input type="file" accept="image/*" (change)="onPhotoSelected($event)" />
+    </div>
+
+    <div class="slots-section">
+      <div class="slots-header">
+        <span class="field-label">Time Slots</span>
+        <button mat-icon-button type="button" (click)="addSlot()">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+
+      <div class="slot-row" *ngFor="let slot of slots; let i = index">
+        <mat-form-field appearance="outline">
+          <mat-label>Date</mat-label>
+          <input matInput type="date" [(ngModel)]="slot.date" [name]="'slotDate' + i" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Time</mat-label>
+          <input matInput type="time" [(ngModel)]="slot.time" [name]="'slotTime' + i" />
+        </mat-form-field>
+
+        <button mat-icon-button type="button" (click)="removeSlot(i)">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <p class="form-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <div class="drawer-actions">
+      <button mat-button type="button" (click)="close()">Cancel</button>
+      <button mat-flat-button class="save-btn" type="submit" [disabled]="saving">
+        {{ saving ? 'Saving...' : (isEditMode ? 'Update' : 'Add') }}
+      </button>
+    </div>
+  </form>
+</div>
