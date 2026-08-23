@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs";
+import { Teacher } from "./teacher.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,10 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  
+  // ===================== Students =====================
+  getAllStudentsOnAdminDashboard(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/student`);
+  }
 
   // ===================== Teachers =====================
   getAllTeachers(): Observable<any> {
@@ -32,7 +36,7 @@ export class AdminService {
   ): Observable<{
     success: boolean;
     message: string;
-    data?: { user: any; teacher: any };
+    data?: { user: any; teacher: Teacher };
   }> {
 
     const formData = new FormData();
@@ -63,7 +67,7 @@ export class AdminService {
     return this.http.post<{
       success: boolean;
       message: string;
-      data?: { user: any; teacher: any };
+      data?: { user: any; teacher: Teacher };
     }>(
       `${environment.apiUrl}/teacher/register`,
       // 'http://localhost:3000/api/teacher/register',
@@ -72,9 +76,41 @@ export class AdminService {
     );
   }
 
-  updateTeacher(id: string, data: any): Observable<any> {
-  return this.http.put(`${environment.apiUrl}/teacher/${id}`, data);
+//   updateTeacher(id: string, data: any): Observable<any> {
+//   return this.http.put(`${environment.apiUrl}/teacher/${id}`, data);
+// }
+
+
+updateTeacher(id: string, data: any): Observable<any> {
+
+  console.log('🔥🔥 ADMIN SERVICE updateTeacher HIT');
+  console.log('ID:', id);
+  console.log('DATA:', data);
+
+  if (data instanceof FormData) {
+    console.log('========== FORMDATA CONTENT ==========');
+
+    data.forEach((value, key) => {
+      console.log(
+        key,
+        ':',
+        value,
+        '| type:',
+        typeof value
+      );
+    });
+
+    console.log('======================================');
+  }
+
+  const url = `http://localhost:3000/api/teacher/${id}`;
+
+  console.log('🔥 LOCAL UPDATE API:', url);
+
+  return this.http.put<any>(url, data);
 }
+
+
 
 
   // ====================== Delete specific Teacher ============================

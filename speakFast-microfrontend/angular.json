@@ -25,7 +25,13 @@
                 "output": "."
               }
             ],
-            "styles": ["projects/shell/src/styles.css"],
+            "styles": [
+              "projects/shell/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
             "main": "projects/shell/src/main.ts",
             "index": "projects/shell/src/index.html",
             "extraWebpackConfig": "projects/shell/webpack.config.js",
@@ -98,7 +104,13 @@
                 "output": "."
               }
             ],
-            "styles": ["projects/admin/src/styles.css"],
+            "styles": [
+              "projects/admin/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
             "main": "projects/admin/src/main.ts",
             "index": "projects/admin/src/index.html",
             "extraWebpackConfig": "projects/admin/webpack.config.js",
@@ -174,7 +186,13 @@
                 "output": "."
               }
             ],
-            "styles": ["projects/student/src/styles.css"],
+            "styles": [
+              "projects/student/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
             "main": "projects/student/src/main.ts",
             "index": "projects/student/src/index.html",
             "extraWebpackConfig": "projects/student/webpack.config.js",
@@ -250,7 +268,13 @@
                 "output": "."
               }
             ],
-            "styles": ["projects/teacher/src/styles.css"],
+            "styles": [
+              "projects/teacher/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
             "main": "projects/teacher/src/main.ts",
             "index": "projects/teacher/src/index.html",
             "extraWebpackConfig": "projects/teacher/webpack.config.js",

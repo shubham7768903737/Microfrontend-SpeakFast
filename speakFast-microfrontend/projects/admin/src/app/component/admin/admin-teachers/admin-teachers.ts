@@ -1,5 +1,6 @@
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit, output, signal } from '@angular/core';
+import { ChangeDetectorRef, Inject, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button';
 import { MatFormField, MatPrefix } from '@angular/material/form-field';
@@ -9,6 +10,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { ViewChild, ElementRef } from '@angular/core';
 import { AddTeacherDialog } from './add-teacher-dialog/add-teacher-dialog';
 
+<<<<<<< HEAD:speakFast-microfrontend/projects/admin/src/app/component/admin-teachers/admin-teachers.ts
 import { AdminService } from '../../core/Services/admin.service';
 import { MatProgressBar } from '@angular/material/progress-bar';
 
@@ -28,6 +30,13 @@ export interface Teacher {
   slots: { date?: string; time?: string; startTime?: string }[];
   googleMeetLink?: string;
 }
+=======
+import { TeacherService, Teacher } from '../../../core/services/teacher.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+
+import { AlertService } from '../../../core/services/alert.service';
+>>>>>>> 57ccb9fb25b3e246b4e14898471b3e9bc7ef7f93:speakFast-microfrontend/projects/admin/src/app/component/admin/admin-teachers/admin-teachers.ts
 
 @Component({
   selector: 'app-admin-teachers',
@@ -50,7 +59,6 @@ export interface Teacher {
   styleUrl: './admin-teachers.css',
 })
 export class AdminTeachers implements OnInit {
-
   searchTerm = '';
   teachers: Teacher[] = [];
   loading = signal(false);
@@ -67,10 +75,10 @@ export class AdminTeachers implements OnInit {
   @ViewChild('firstNameInput') firstNameInput!: ElementRef;
 
   constructor(
-    private adminService: AdminService,
+    @Inject(TeacherService) private teacherService: TeacherService,
     private cdr: ChangeDetectorRef,
     private alertService: AlertService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadTeachers();
@@ -80,7 +88,7 @@ export class AdminTeachers implements OnInit {
     this.loading.set(true);
 
 
-    this.adminService.getAllTeachers().subscribe({
+    this.teacherService.getTeachers().subscribe({
       next: (res: any) => {
         console.log('TEACHER API RESPONSE:', res);
 
@@ -94,7 +102,7 @@ export class AdminTeachers implements OnInit {
         this.cdr.detectChanges();
 
         // teacher cout
-        this.shareTeacherCount.emit(res.total)
+        this.shareTeacherCount.emit(res.total);
       },
 
       error: (err: any) => {
@@ -107,6 +115,22 @@ export class AdminTeachers implements OnInit {
   onTeacherAdded(): void {
     this.loadTeachers();
     this.onDrawerClose();
+  }
+
+  onDeleteTeacher(teacher: Teacher): void {
+    if (!confirm(`Delete ${teacher.userId.firstName} ${teacher.userId.lastName}?`)) {
+      return;
+    }
+
+    this.teacherService.deleteTeacher(teacher._id).subscribe({
+      next: () => {
+        this.teachers = this.teachers.filter(t => t._id !== teacher._id);
+        this.cdr.detectChanges();
+      },
+      error: (err: any) => {
+        console.error('Failed to delete teacher:', err);
+      }
+    });
   }
 
   onEditTeacher(teacher: Teacher): void {
@@ -156,9 +180,6 @@ export class AdminTeachers implements OnInit {
 
     if (current > 4 && current < total - 2) {
       pages.push('...', current);
-      if (current < total - 3) {
-        pages.push('...');
-      }
     } else {
       pages.push('...');
     }
@@ -190,9 +211,9 @@ export class AdminTeachers implements OnInit {
     this.teacherBeingEdited = null;
     this.drawerOpen = true;
 
-     setTimeout(() => {
-    this.firstNameInput?.nativeElement.focus();
-  }, 200);
+    setTimeout(() => {
+      this.firstNameInput?.nativeElement.focus();
+    }, 200);
   }
 
   onDrawerClose(): void {
@@ -201,57 +222,56 @@ export class AdminTeachers implements OnInit {
   }
 
   // delete specific teacher
-async deleteTeacher(teacher: Teacher): Promise<void> {
+  async deleteTeacher(teacher: any): Promise<void> {
 
-  const scrollPosition = window.scrollY;
+    const scrollPosition = window.scrollY;
 
-  const teacherName =
-    `${teacher.userId?.firstName || ''} ${teacher.userId?.lastName || ''}`.trim();
+    const teacherName =
+      `${teacher.userId?.firstName || ''} ${teacher.userId?.lastName || ''}`.trim();
 
-  const result = await this.alertService.confirm(
-    'Are you sure?',
-    `
+    const result = await this.alertService.confirm(
+      'Are you sure?',
+      `
       This action cannot be undone.<br>
       Do you really want to delete<br>
       <strong>${teacherName}</strong> ?
     `,
-    'warning',
-    'Yes, Delete',
-    'Cancel'
-  );
+      'warning',
+      'Yes, Delete',
+      'Cancel'
+    );
 
-  if (!result.isConfirmed) {
-    window.scrollTo(0, scrollPosition);
-    return;
-  }
-
-  this.adminService.deleteSpecificTeacher(teacher._id).subscribe({
-
-    next: () => {
-
-      this.loadTeachers();
-
-      setTimeout(() => {
-        window.scrollTo(0, scrollPosition);
-      }, 0);
-
-      this.alertService.toasterSuccess(
-        'Teacher deleted successfully.'
-      );
-
-    },
-
-    error: (err: any) => {
-
-      this.alertService.error(
-        'Error!',
-        err.error?.message || 'Something went wrong.'
-      );
-
+    if (!result.isConfirmed) {
+      window.scrollTo(0, scrollPosition);
+      return;
     }
 
-  });
-}
+    this.teacherService.deleteTeacher(teacher._id).subscribe({
 
+      next: () => {
+
+        this.loadTeachers();
+
+        setTimeout(() => {
+          window.scrollTo(0, scrollPosition);
+        }, 0);
+
+        this.alertService.toasterSuccess(
+          'Teacher deleted successfully.'
+        );
+
+      },
+
+      error: (err: any) => {
+
+        this.alertService.error(
+          'Error!',
+          err.error?.message || 'Something went wrong.'
+        );
+
+      }
+
+    });
+  }
 
 }
