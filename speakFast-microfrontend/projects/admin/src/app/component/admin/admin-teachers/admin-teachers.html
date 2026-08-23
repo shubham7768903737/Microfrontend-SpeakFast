@@ -1,1 +1,187 @@
-<p>admin-teachers works!</p>
+<div class="page-wrap">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="title-block">
+      <h2 class="page-title">Teachers</h2>
+      <span class="count-pill">{{ totalTeachers }} total</span>
+    </div>
+
+    <div class="header-actions">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-icon matPrefix class="search-icon">search</mat-icon>
+        <input
+          matInput
+          type="text"
+          placeholder="Search Teachers..."
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+        />
+      </mat-form-field>
+
+      <button mat-flat-button class="add-btn" (click)="openDrawer()">
+        <mat-icon>add</mat-icon>
+        <span>Add Teacher</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Table card -->
+  <div class="table-card">
+    <mat-progress-bar *ngIf="loading()" mode="indeterminate"> </mat-progress-bar>
+
+
+    <!-- Empty state -->
+    <div class="state-row" *ngIf="!loading() && filteredTeachers.length === 0">
+      <span>No teachers found.</span>
+    </div>
+
+    <table class="student-table" *ngIf="loading() ||filteredTeachers.length > 0">
+      <thead>
+        <tr>
+          <th class="col-name">
+            <span class="th-label">Name</span>
+            <mat-icon class="sort-icon">unfold_more</mat-icon>
+          </th>
+          <th class="col-contact">Contact</th>
+          <th class="col-aadhar">Aadhar No.</th>
+          <th class="col-timeslot">
+            <span class="th-label">Time Slot</span>
+            <mat-icon class="sort-icon">unfold_more</mat-icon>
+          </th>
+          <th class="col-class">Class</th>
+          <th class="col-action">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let teacher of paginatedTeachers">
+          <!-- Name + Avatar -->
+          <td class="col-name">
+            <div class="name-cell">
+              <img *ngIf="teacher.photo" [src]="teacher.photo" class="avatar avatar-photo" alt="" />
+              <span *ngIf="!teacher.photo" class="avatar">
+                {{ teacher.userId.firstName.charAt(0) }}{{ teacher.userId.lastName.charAt(0) }}
+              </span>
+              <span class="name-text"
+                >{{ teacher.userId.firstName }} {{ teacher.userId.lastName }}</span
+              >
+            </div>
+          </td>
+
+          <!-- Contact -->
+          <td class="col-contact">
+            <div class="contact-cell">
+              <div class="contact-line">
+                <mat-icon class="contact-icon">mail_outline</mat-icon>
+                <span>{{ teacher.userId.email }}</span>
+              </div>
+              <div class="contact-line" *ngIf="teacher.contactNumber">
+                <mat-icon class="contact-icon">call</mat-icon>
+                <span>{{ teacher.contactNumber }}</span>
+              </div>
+            </div>
+          </td>
+
+          <!-- Aadhar -->
+          <td class="col-aadhar">{{ teacher.aadharNo || '-' }}</td>
+
+          <!-- Time Slot -->
+          <!-- <td class="col-timeslot">
+            <div class="timeslot-cell">
+              <span *ngFor="let slot of teacher.slots">{{ slot.time || slot.startTime }}</span>
+              <span *ngIf="!teacher.slots.length">-</span>
+            </div>
+          </td> -->
+
+          <td class="col-timeslot">
+            <div class="timeslot-cell">
+              <span class="slot-badge" *ngFor="let slot of teacher.slots">{{
+                slot.time || slot.startTime
+              }}</span>
+              <span *ngIf="!teacher.slots.length">-</span>
+            </div>
+          </td>
+
+          <!-- Class / Meet button -->
+          <td class="col-class">
+            <a
+              *ngIf="teacher.googleMeetLink"
+              mat-flat-button
+              class="meet-btn"
+              [href]="teacher.googleMeetLink"
+              target="_blank"
+              rel="noopener"
+            >
+              <mat-icon class="meet-icon">videocam</mat-icon>
+              <span>Meet</span>
+            </a>
+
+            <span *ngIf="!teacher.googleMeetLink" class="no-meet"> — </span>
+          </td>
+
+          <!-- Action -->
+          <td class="col-action">
+            <div class="action-cell">
+              <button mat-icon-button class="action-btn edit-btn" (click)="onEditTeacher(teacher)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                class="action-btn delete-btn"
+                type="button"
+                (mousedown)="$event.preventDefault()"
+                (click)="deleteTeacher(teacher)"
+              >
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-bar" *ngIf="!loading() && filteredTeachers.length > 0">
+    <button
+      mat-icon-button
+      class="page-arrow"
+      [disabled]="currentPage() === 1"
+      (click)="prevPage()"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <ng-container *ngFor="let page of pageNumbers">
+      <span *ngIf="page === '...'" class="page-ellipsis">...</span>
+      <button
+        *ngIf="page !== '...'"
+        class="page-number"
+        [class.active]="page === currentPage()"
+        (click)="goToPage(page)"
+      >
+        {{ page }}
+      </button>
+    </ng-container>
+
+    <button
+      mat-icon-button
+      class="page-arrow"
+      [disabled]="currentPage() === totalPages"
+      (click)="nextPage()"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <!-- Add / Edit Teacher Dialog -->
+  <!-- Dialog owns its own backdrop + panel internally, driven by [isOpen] -->
+  <app-add-teacher-dialog
+    *ngIf="drawerOpen"
+    [teacherData]="teacherBeingEdited"
+    [isOpen]="drawerOpen"
+    (addTeacher)="onTeacherAdded()"
+    (closeDrawer)="onDrawerClose()"
+  >
+  </app-add-teacher-dialog>
+</div>
