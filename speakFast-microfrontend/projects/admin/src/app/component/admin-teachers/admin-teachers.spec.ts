@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 
 import { AdminTeachers, Teacher } from './admin-teachers';
-import { AdminService } from '../../core/services/admin.service';
-import { AlertService } from '../../core/services/alert.service';
+import { AdminService } from '../../core/Services/admin.service';
+import { AlertService } from '../../core/Services/alert.service';
 
 describe('AdminTeachers', () => {
   let component: AdminTeachers;

@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
 
-import { AdminService } from '../../../core/services/admin.service';
-import { AlertService } from '../../../core/services/alert.service';
+import { AdminService } from '../../../core/Services/admin.service';
+import { AlertService } from '../../../core/Services/alert.service';
 import { Teacher } from '../admin-teachers';
 
 interface SlotForm {
@@ -30,10 +30,12 @@ interface TeacherForm {
   imports: [
     CommonModule,
     FormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
+    MatButton,
+    MatIconButton,
+    MatFormField,
+    MatIcon,
+    MatInput,
+    MatLabel
   ],
   templateUrl: './add-teacher-dialog.html',
   styleUrl: './add-teacher-dialog.css',
