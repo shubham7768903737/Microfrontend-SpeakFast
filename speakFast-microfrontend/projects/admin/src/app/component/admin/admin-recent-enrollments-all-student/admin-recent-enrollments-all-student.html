@@ -1,0 +1,98 @@
+<div class="enrollments-card">
+
+  <!-- Header -->
+  <div class="enrollments-header">
+    <h2 class="enrollments-title">{{ totalEnrollments }} New enrollments today</h2>
+
+    <div class="header-actions">
+      <div class="search-box">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search Students..."
+          [(ngModel)]="searchText"
+        />
+      </div>
+
+      <button class="date-btn" (click)="picker.open()">
+        <mat-icon>calendar_today</mat-icon>
+        <span>{{ selectedDate ? (selectedDate | date:'MMM d, y') : 'Select Date' }}</span>
+        <mat-icon *ngIf="selectedDate" class="clear-date-icon" (click)="clearDate($event)">close</mat-icon>
+
+        <input
+          #dateInput
+          [matDatepicker]="picker"
+          [ngModel]="selectedDate"
+          (dateChange)="onDateSelected($event.value)"
+          class="hidden-date-input"
+        />
+        <mat-datepicker #picker></mat-datepicker>
+      </button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <div class="table-row table-head">
+      <div class="col col-name">
+        Name <mat-icon class="sort-icon">unfold_more</mat-icon>
+      </div>
+      <div class="col col-contact">Contact</div>
+      <div class="col col-plan">Plan</div>
+      <div class="col col-date">
+        Enrolled <mat-icon class="sort-icon">unfold_more</mat-icon>
+      </div>
+      <div class="col col-date">
+        End <mat-icon class="sort-icon">unfold_more</mat-icon>
+      </div>
+      <div class="col col-time">Time Slot</div>
+      <div class="col col-fee">Fee</div>
+    </div>
+
+    <div class="table-row" *ngFor="let e of filteredEnrollments">
+      <div class="col col-name">
+        <div class="avatar">{{ e.initials }}</div>
+        <span class="name-text">{{ e.name }}</span>
+      </div>
+
+      <div class="col col-contact">
+        <div class="contact-line">
+          <mat-icon class="contact-icon">mail</mat-icon>
+          <span>{{ e.email }}</span>
+        </div>
+        <div class="contact-line">
+          <mat-icon class="contact-icon">call</mat-icon>
+          <span>{{ e.phone }}</span>
+        </div>
+      </div>
+
+      <div class="col col-plan">
+        <div class="plan-text">{{ e.plan }}</div>
+        <div class="teacher-text">with {{ e.teacher }}</div>
+      </div>
+
+      <div class="col col-date">{{ e.enrolledDate }}</div>
+      <div class="col col-date">{{ e.endDate }}</div>
+      <div class="col col-time">{{ e.timeSlot }}</div>
+
+      <div class="col col-fee">
+        <ng-container *ngIf="e.status === 'paid'; else pendingBlock">
+          <span class="fee-text">{{ e.fee }}</span>
+        </ng-container>
+        <ng-template #pendingBlock>
+          <div class="pending-wrap">
+            <span class="pending-badge">Pending</span>
+            <div class="action-btns">
+              <button class="accept-btn" (click)="onAccept(e)">Accept</button>
+              <button class="reject-btn" (click)="onReject(e)">Reject</button>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="filteredEnrollments.length === 0">
+      No students found.
+    </div>
+  </div>
+</div>

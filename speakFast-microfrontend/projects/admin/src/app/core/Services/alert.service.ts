@@ -1,55 +1,149 @@
+import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
-import Swal, { SweetAlertIcon, SweetAlertResult } from 'sweetalert2';
+
+import Swal, {
+  SweetAlertIcon,
+  SweetAlertResult
+} from 'sweetalert2';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AlertService {
+
+  constructor(private toster: ToastrService){}
+
+
+  // ==============================
+  // Confirm Alert
+  // ==============================
   confirm(
     title: string,
     html: string,
     icon: SweetAlertIcon = 'warning',
-    confirmButtonText = 'Yes',
-    cancelButtonText = 'Cancel'
-  ): Promise<SweetAlertResult> {
+    confirmButtonText: string = 'Yes',
+    cancelButtonText: string = 'Cancel'
+  ): Promise<SweetAlertResult<any>> {
+
     return Swal.fire({
-      title,
-      html,
-      icon,
+
+      title: title,
+
+      // IMPORTANT:
+      // text ऐवजी html
+      html: html,
+
+      icon: icon,
+
       showCancelButton: true,
-      confirmButtonText,
-      cancelButtonText,
-      confirmButtonColor: '#e0453f',
-      cancelButtonColor: '#6b7280',
-      reverseButtons: true,
+
+      confirmButtonText: confirmButtonText,
+      cancelButtonText: cancelButtonText,
+
+      reverseButtons: false,
+
+      heightAuto: false,
+      returnFocus: false,
+      scrollbarPadding: false,
+
+      buttonsStyling: false,
+
+      customClass: {
+        popup: 'custom-delete-popup',
+        icon: 'custom-delete-icon',
+        title: 'custom-delete-title',
+        htmlContainer: 'custom-delete-text',
+        actions: 'custom-delete-actions',
+        confirmButton: 'custom-confirm-btn',
+        cancelButton: 'custom-cancel-btn'
+      }
+
     });
+
   }
 
-  success(title: string, message = ''): Promise<SweetAlertResult> {
-    return Swal.fire({ title, text: message, icon: 'success' });
+
+  // ==============================
+  // Success Popup
+  // ==============================
+  success(title: string, text: string) {
+
+    return Swal.fire({
+
+      title,
+      text,
+
+      icon: 'success',
+
+      buttonsStyling: false,
+
+      customClass: {
+        popup: 'custom-popup',
+        confirmButton: 'custom-confirm-btn'
+      }
+
+    });
+
   }
 
-  error(title: string, message = ''): Promise<SweetAlertResult> {
-    return Swal.fire({ title, text: message, icon: 'error' });
+
+  // ==============================
+  // Error Popup
+  // ==============================
+  error(title: string, text: string) {
+
+    return Swal.fire({
+
+      title,
+      text,
+
+      icon: 'error',
+
+      buttonsStyling: false,
+
+      customClass: {
+        popup: 'custom-popup',
+        confirmButton: 'custom-confirm-btn'
+      }
+
+    });
+
   }
 
-  toasterSuccess(message: string): void {
-    Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 2500,
-      timerProgressBar: true,
-    }).fire({ icon: 'success', title: message });
+
+  // ==============================
+  // Info Popup
+  // ==============================
+  info(title: string, text: string) {
+
+    return Swal.fire({
+
+      title,
+      text,
+
+      icon: 'info',
+
+      buttonsStyling: false,
+
+      customClass: {
+        popup: 'custom-popup',
+        confirmButton: 'custom-confirm-btn'
+      }
+
+    });
+
   }
 
-  toasterError(message: string): void {
-    Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 2500,
-      timerProgressBar: true,
-    }).fire({ icon: 'error', title: message });
+  toasterSuccess(message: string){
+    this.toster.success(message)
   }
+
+  tosterUnsuccess(message: string){
+    this.toster.error(message)
+  }
+
+  tosterInfo(message: string){
+    this.toster.info(message)
+  }
+
 }
