@@ -1,0 +1,80 @@
+<div class="login-page">
+
+
+  <div class="login-card ">
+    <!-- Logo -->
+    <div class="logo-wrap">
+      <img src="../../../../assets/speakFast-logo.png" alt="Speak Fast's English Academy Logo">
+    </div>
+
+    <!-- Heading -->
+    <h1 class="welcome-heading">Welcome Back!</h1>
+    <p class="welcome-subtext">The best English language training institute in Pune</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submitData()" >
+
+
+      <!-- Email -->
+
+      <div class="email-wrapper">
+        <Label id="email-">Email Address</Label>
+        <input id="email " type="text"  formControlName="email" placeholder="Enter your email here"  >
+        @if(loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched){
+        <small class="text-danger ">Field is required</small>
+        }
+        @else if(loginForm.get('email')?.hasError('isEmailCorrect') && loginForm.get('email')?.touched){
+        <small class="text-danger">Enter your full email id</small>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="password-wrapper">
+        <label>Password</label>
+
+        <div class="position-relative ">
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control"  formControlName="password"
+            placeholder="Enter your password">
+
+          <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePassword()">
+          </i>
+        </div>
+        @if(loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched){
+        <small class="text-danger">Field is required</small>
+        }
+      </div>
+
+
+      <!-- Remember me / Forgot password -->
+      <div class="check-out-wrapper top-row ">
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="isChecked" >
+          <label class="form-check-label" for="exampleCheck1"  >Keep me logged in</label>
+        </div>
+
+
+
+        <a routerLink="/login/confirmPassword" class="forgot-link">
+          Forgot Password?
+        </a>
+      </div>
+
+      <!-- Login Button -->
+      <button mat-raised-button type="submit" class="btn-login w-100">
+        <div class="text-white">
+          @if (!isLoaderOn()) {
+            Login  &nbsp; <i class="bi bi-arrow-right"></i>
+          } @else {
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            Logging...
+
+
+          }
+        </div>
+      </button>
+
+    </form>
+
+  </div>
+
+
+</div>

@@ -2,36 +2,58 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Inject, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button';
+import { MatFormField, MatPrefix } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
+import { MatTooltip } from '@angular/material/tooltip';
 import { ViewChild, ElementRef } from '@angular/core';
 import { AddTeacherDialog } from './add-teacher-dialog/add-teacher-dialog';
 
+<<<<<<< HEAD:speakFast-microfrontend/projects/admin/src/app/component/admin-teachers/admin-teachers.ts
+import { AdminService } from '../../core/Services/admin.service';
+import { MatProgressBar } from '@angular/material/progress-bar';
+
+
+import { AlertService } from '../../core/Services/alert.service';
+
+export interface Teacher {
+  _id: string;
+  userId: {
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
+  photo?: string;
+  contactNumber?: string;
+  aadharNo?: string;
+  slots: { date?: string; time?: string; startTime?: string }[];
+  googleMeetLink?: string;
+}
+=======
 import { TeacherService, Teacher } from '../../../core/services/teacher.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 import { AlertService } from '../../../core/services/alert.service';
+>>>>>>> 57ccb9fb25b3e246b4e14898471b3e9bc7ef7f93:speakFast-microfrontend/projects/admin/src/app/component/admin/admin-teachers/admin-teachers.ts
 
 @Component({
   selector: 'app-admin-teachers',
+  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTooltipModule,
-    MatSnackBarModule,
+    MatButton,
+    MatIconButton,
+    MatAnchor,
+    MatIcon,
+    MatFormField,
+    MatPrefix,
+    MatInput,
+    MatTooltip,
     AddTeacherDialog,
-    MatProgressBarModule
+    MatProgressBar
   ],
   templateUrl: './admin-teachers.html',
   styleUrl: './admin-teachers.css',
