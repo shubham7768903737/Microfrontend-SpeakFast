@@ -25,7 +25,6 @@
     "strictTemplates": true
   },
   "files": [],
-  
   "references": [
     {
       "path": "./projects/shell/tsconfig.app.json"
@@ -50,7 +49,12 @@
     },
     {
       "path": "./projects/teacher/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/student-registration/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/student-registration/tsconfig.spec.json"
     }
- 
   ]
 }
