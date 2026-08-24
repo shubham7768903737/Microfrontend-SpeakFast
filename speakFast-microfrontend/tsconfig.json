@@ -13,7 +13,6 @@
     "target": "ES2022",
     "module": "preserve",
     "baseUrl": ".",
-    "rootDir": ".",
     "paths": {
       "@shared/*": ["projects/shared/services/*"],
       "@shared-env/*": ["projects/shared/environments/*"]
@@ -26,7 +25,6 @@
     "strictTemplates": true
   },
   "files": [],
-  
   "references": [
     {
       "path": "./projects/shell/tsconfig.app.json"
@@ -51,7 +49,12 @@
     },
     {
       "path": "./projects/teacher/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/student-registration/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/student-registration/tsconfig.spec.json"
     }
- 
   ]
 }
