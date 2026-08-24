@@ -11,7 +11,12 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["projects/shared/services/*"],
+      "@shared-env/*": ["projects/shared/environments/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -20,6 +25,7 @@
     "strictTemplates": true
   },
   "files": [],
+  
   "references": [
     {
       "path": "./projects/shell/tsconfig.app.json"
@@ -45,5 +51,6 @@
     {
       "path": "./projects/teacher/tsconfig.spec.json"
     }
+ 
   ]
 }
