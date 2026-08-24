@@ -8,6 +8,7 @@ module.exports = withModuleFederationPlugin({
     admin: 'http://localhost:4201/remoteEntry.js',
     student: 'http://localhost:4202/remoteEntry.js',
     teacher: 'http://localhost:4203/remoteEntry.js',
+    studentRegistratin: 'http://localhost:4204/remoteEntry.js',
   },
 
   shared: {

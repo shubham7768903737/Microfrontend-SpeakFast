@@ -76,6 +76,16 @@ export const routes: Routes = [
 				exposedModule: './Routes',
 			}).then((module) => module.routes),
 	},
+
+  	{
+		path: 'studentRegistration',
+		loadChildren: () =>
+			loadRemoteModule({
+				type: 'module',
+				remoteEntry: 'http://localhost:4204/remoteEntry.js',
+				exposedModule: './Routes',
+			}).then((module) => module.routes),
+	},
 	{ path: '', pathMatch: 'full', redirectTo: 'admin' },
 	{ path: '**', redirectTo: 'admin' },
 ];
