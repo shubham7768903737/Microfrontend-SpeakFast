@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { AdminService } from '@shared/admin.service';
@@ -67,7 +67,7 @@ export class AddTeacherDialog implements OnInit, OnChanges, AfterViewInit {
 
   constructor(
     private elRef: ElementRef,
-    private adminServe: AdminService,
+   @Inject(AdminService) private adminServe: AdminService,
     private toastr: ToastrService
   ) { }
 

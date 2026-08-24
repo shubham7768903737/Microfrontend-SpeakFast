@@ -12,7 +12,6 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 import { AlertService } from '@shared/alert.service';
 import { TeacherService} from '@shared/teacher.service';
 
-
 export interface Teacher {
   _id: string;
   userId: {
@@ -26,6 +25,7 @@ export interface Teacher {
   slots: { date?: string; time?: string; startTime?: string }[];
   googleMeetLink?: string;
 }
+
 @Component({
   selector: 'app-admin-teachers',
   standalone: true,
@@ -39,8 +39,8 @@ export interface Teacher {
     MatFormField,
     MatPrefix,
     MatInput,
-    AddTeacherDialog,
-    MatProgressBar
+    MatProgressBar,
+    AddTeacherDialog
   ],
   templateUrl: './admin-teachers.html',
   styleUrl: './admin-teachers.css',
@@ -64,6 +64,7 @@ export class AdminTeachers implements OnInit {
   constructor(
     @Inject(TeacherService) private teacherService: TeacherService,
     private cdr: ChangeDetectorRef,
+    @Inject(AlertService) 
     private alertService: AlertService
   ) { }
 

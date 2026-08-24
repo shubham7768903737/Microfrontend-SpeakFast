@@ -7,6 +7,9 @@ export const routes: Routes = [
 		loadComponent: () =>
 			import('./componets/login/login').then((module) => module.Login),
 	},
+
+	{ path: 'login/confirmPassword', loadComponent: () => import('./componets/forgot-password/confirm-password/confirm-password').then((module) => module.ConfirmPassword) },
+
 	{
 		path : "forgotPassword", loadComponent : ()=> import('./componets/forgot-password/forgot-password').then((m)=>m.ForgotPassword),
 

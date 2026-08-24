@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../environments/environment";
 import { Observable } from "rxjs";
-import { Teacher } from "../services/teacher.service";
+import { Teacher } from "@shared/teacher.service";
 
 @Injectable({
   providedIn: 'root'
@@ -76,9 +76,41 @@ export class AdminService {
     );
   }
 
-  updateTeacher(id: string, data: any): Observable<any> {
-  return this.http.put(`${environment.apiUrl}/teacher/${id}`, data);
+//   updateTeacher(id: string, data: any): Observable<any> {
+//   return this.http.put(`${environment.apiUrl}/teacher/${id}`, data);
+// }
+
+
+updateTeacher(id: string, data: any): Observable<any> {
+
+  console.log('🔥🔥 ADMIN SERVICE updateTeacher HIT');
+  console.log('ID:', id);
+  console.log('DATA:', data);
+
+  if (data instanceof FormData) {
+    console.log('========== FORMDATA CONTENT ==========');
+
+    data.forEach((value, key) => {
+      console.log(
+        key,
+        ':',
+        value,
+        '| type:',
+        typeof value
+      );
+    });
+
+    console.log('======================================');
+  }
+
+  const url = `http://localhost:3000/api/teacher/${id}`;
+
+  console.log('🔥 LOCAL UPDATE API:', url);
+
+  return this.http.put<any>(url, data);
 }
+
+
 
 
   // ====================== Delete specific Teacher ============================
