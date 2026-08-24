@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { AdminService } from '../../../../core/services/admin.service';
+import { AdminService } from '@shared/admin.service';
 import { ToastrService } from 'ngx-toastr';
 
 interface BookedSlot {

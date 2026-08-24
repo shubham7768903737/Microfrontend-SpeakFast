@@ -6,16 +6,14 @@ import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button';
 import { MatFormField, MatPrefix } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { MatTooltip } from '@angular/material/tooltip';
 import { ViewChild, ElementRef } from '@angular/core';
 import { AddTeacherDialog } from './add-teacher-dialog/add-teacher-dialog';
 
-<<<<<<< HEAD:speakFast-microfrontend/projects/admin/src/app/component/admin-teachers/admin-teachers.ts
-import { AdminService } from '../../core/Services/admin.service';
+import { AdminService } from '@shared/admin.service';
 import { MatProgressBar } from '@angular/material/progress-bar';
-
-
-import { AlertService } from '../../core/Services/alert.service';
+import { AlertService } from '@shared/alert.service';
+import { TeacherService} from '@shared/teacher.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 export interface Teacher {
   _id: string;
@@ -30,14 +28,6 @@ export interface Teacher {
   slots: { date?: string; time?: string; startTime?: string }[];
   googleMeetLink?: string;
 }
-=======
-import { TeacherService, Teacher } from '../../../core/services/teacher.service';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-
-
-import { AlertService } from '../../../core/services/alert.service';
->>>>>>> 57ccb9fb25b3e246b4e14898471b3e9bc7ef7f93:speakFast-microfrontend/projects/admin/src/app/component/admin/admin-teachers/admin-teachers.ts
-
 @Component({
   selector: 'app-admin-teachers',
   standalone: true,
@@ -51,7 +41,6 @@ import { AlertService } from '../../../core/services/alert.service';
     MatFormField,
     MatPrefix,
     MatInput,
-    MatTooltip,
     AddTeacherDialog,
     MatProgressBar
   ],

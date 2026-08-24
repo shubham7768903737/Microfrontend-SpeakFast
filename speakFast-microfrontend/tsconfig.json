@@ -13,7 +13,6 @@
     "target": "ES2022",
     "module": "preserve",
     "baseUrl": ".",
-    "rootDir": ".",
     "paths": {
       "@shared/*": ["projects/shared/services/*"],
       "@shared-env/*": ["projects/shared/environments/*"]
