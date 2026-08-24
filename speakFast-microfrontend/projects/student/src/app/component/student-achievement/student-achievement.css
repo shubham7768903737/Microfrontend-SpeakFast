@@ -10,7 +10,7 @@
   --stats-bg: #eaf2fd;
 
   display: block;
-  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   color: var(--text-main);
 }
 
