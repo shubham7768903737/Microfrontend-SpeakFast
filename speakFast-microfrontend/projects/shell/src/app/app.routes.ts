@@ -3,15 +3,53 @@ import { loadRemoteModule } from '@angular-architects/module-federation';
 
 export const routes: Routes = [
 	{
-<<<<<<< HEAD
 		path: 'login',
 		loadComponent: () =>
 			import('./componets/login/login').then((module) => module.Login),
 	},
+
 	{ path: 'login/confirmPassword', loadComponent: () => import('./componets/forgot-password/confirm-password/confirm-password').then((module) => module.ConfirmPassword) },
+
 	{
-=======
->>>>>>> 57ccb9fb25b3e246b4e14898471b3e9bc7ef7f93
+		path : "forgotPassword", loadComponent : ()=> import('./componets/forgot-password/forgot-password').then((m)=>m.ForgotPassword),
+
+		children :[
+			{
+        path: '',
+        redirectTo: 'resetpassword',
+        pathMatch: 'full'
+      },
+
+      {
+        path: 'resetpassword',
+        loadComponent: () =>
+          import('./componets/forgot-password/reset-password/reset-password')
+            .then(m => m.ResetPassword)
+      },
+
+      {
+        path: 'sentLink',
+        loadComponent: () =>
+          import('./componets/forgot-password/link-sent/link-sent')
+            .then(m => m.LinkSent)
+      },
+
+      {
+        path: 'confirmPassword/:token',
+        loadComponent: () =>
+          import('./componets/forgot-password/confirm-password/confirm-password')
+            .then(m => m.ConfirmPassword)
+      },
+
+      {
+        path: 'passwordChanged',
+        loadComponent: () =>
+          import('./componets/forgot-password/password-changed/password-changed')
+            .then(m => m.PasswordChanged)
+      }
+		]
+	},
+	{
 		path: 'admin',
 		loadChildren: () =>
 			loadRemoteModule({
@@ -35,6 +73,16 @@ export const routes: Routes = [
 			loadRemoteModule({
 				type: 'module',
 				remoteEntry: 'http://localhost:4203/remoteEntry.js',
+				exposedModule: './Routes',
+			}).then((module) => module.routes),
+	},
+
+  	{
+		path: 'studentRegistration',
+		loadChildren: () =>
+			loadRemoteModule({
+				type: 'module',
+				remoteEntry: 'http://localhost:4204/remoteEntry.js',
 				exposedModule: './Routes',
 			}).then((module) => module.routes),
 	},
