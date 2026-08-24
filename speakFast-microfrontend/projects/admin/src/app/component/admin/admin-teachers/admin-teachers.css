@@ -316,6 +316,32 @@
   color: #e0453f !important;
 }
 
+/* Drawer */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 18, 24, 0.4);
+  z-index: 1000;
+}
+
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 420px;
+  max-width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+  transition: right 0.25s ease;
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+.drawer-panel.open {
+  right: 0;
+}
+
 /* Pagination */
 .pagination-bar {
   display: flex;
