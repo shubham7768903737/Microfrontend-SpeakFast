@@ -28,6 +28,25 @@ export interface Teacher {
   slots: { date?: string; time?: string; startTime?: string }[];
   googleMeetLink?: string;
 }
+import { AdminService } from '../../core/Services/admin.service';
+import { MatProgressBar } from '@angular/material/progress-bar';
+
+
+import { AlertService } from '../../core/Services/alert.service';
+
+export interface Teacher {
+  _id: string;
+  userId: {
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
+  photo?: string;
+  contactNumber?: string;
+  aadharNo?: string;
+  slots: { date?: string; time?: string; startTime?: string }[];
+  googleMeetLink?: string;
+}
 @Component({
   selector: 'app-admin-teachers',
   standalone: true,
