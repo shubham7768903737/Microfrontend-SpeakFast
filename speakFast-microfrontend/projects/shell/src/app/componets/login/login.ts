@@ -54,6 +54,7 @@ loginForm!: FormGroup;
 
   ngOnInit(): void {
       this.formInitializer();
+      console.log(this.formInitializer())
   }
 
 
