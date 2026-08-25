@@ -7,7 +7,7 @@ module.exports = withModuleFederationPlugin({
   name: 'registration-student',
 
   exposes: {
-    './Component': './projects\registration-student\src\app\app.ts',
+    './Component': './projects/registration-student/src/app/app.ts',
   },
 
   shared: {
