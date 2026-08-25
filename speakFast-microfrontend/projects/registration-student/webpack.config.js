@@ -4,10 +4,10 @@ const {
 } = require('@angular-architects/module-federation/webpack');
 
 module.exports = withModuleFederationPlugin({
-  name: 'student-registration',
+  name: 'registration-student',
 
   exposes: {
-    './Component': './projects\student-registration\src\app\app.ts',
+    './Component': './projects\registration-student\src\app\app.ts',
   },
 
   shared: {
