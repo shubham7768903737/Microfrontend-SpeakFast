@@ -409,6 +409,79 @@
           "builder": "@angular/build:unit-test"
         }
       }
+    },
+    "registration-student": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/registration-student",
+      "sourceRoot": "projects/registration-student/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "tsConfig": "projects/registration-student/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/registration-student/public",
+                "output": "."
+              }
+            ],
+            "styles": ["projects/registration-student/src/styles.css"],
+            "main": "projects/registration-student/src/main.ts",
+            "outputPath": "dist/registration-student",
+            "index": "projects\\registration-student\\src\\index.html",
+            "extraWebpackConfig": "projects/registration-student/webpack.config.js",
+            "commonChunk": false
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all",
+              "extraWebpackConfig": "projects/registration-student/webpack.prod.config.js"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "registration-student:build:production",
+              "extraWebpackConfig": "projects/registration-student/webpack.prod.config.js"
+            },
+            "development": {
+              "buildTarget": "registration-student:build:development"
+            }
+          },
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4204,
+            "publicHost": "http://localhost:4204",
+            "extraWebpackConfig": "projects/registration-student/webpack.config.js"
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
     }
   }
 }
