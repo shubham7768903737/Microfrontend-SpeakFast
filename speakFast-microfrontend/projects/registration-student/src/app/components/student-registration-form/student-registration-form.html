@@ -1,0 +1,399 @@
+<div class="registration-page">
+
+  <div class="top-banner  d-flex flex-column justify-content-center align-items-center">
+    <h1> Complete<span> your registration </span> </h1>
+    <p>Just one more step to start your English learning journey!</p>
+  </div>
+
+  <div class="container form-section">
+    <!-- Your cards and registration form -->
+    <div class="row cards-section">
+      <div class="col-lg-6 mb-4">
+        <div class="left-card">
+          <!-- Left Content -->
+          <div class=" mb-4">
+            <div class="card mb-3" >
+              <div class="row g-0 align-items-center">
+                <!-- Image Column: full width on mobile, half width on medium screens and above -->
+                <div class="award-image-wrapper col-12 col-md-6 ">
+                  <img src="../../../assets/images/SpeakFastAwardedbyVaniKapoor.jpg"
+                    class="img-fluid w-100" alt="SpeakFast Awarded by Vaani Kapoor">
+                </div>
+
+                <!-- Content Column: full width on mobile, half width on medium screens and above -->
+                <div class="col-12 col-md-6">
+                  <div class="card-body">
+                    <h5 class="card-title" >
+                      Pune’s Absolute Best in Spoken English Classes
+                    </h5>
+
+                    <p class="card-text" >
+Proudly awarded "The Best English Language Training Institute in Pune" from actress Vaani Kapoor for our commitment to student fluency and career transformation.
+<br> Speaking in English is now easy with our engaging & practical training. Join our spoken English course today.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class=" mb-4">
+            <div class="d-flex align-items-center">
+              <div class="icon-box">
+                <img src="../../../assets/images/learning-student_svgrepo.com (1).png" alt="">
+              </div>
+              <p class="mb-0 ms-3">2000+ Student Trained</p>
+            </div>
+          </div>
+
+          <!-- <div class=" mb-4">
+            <div class="d-flex align-items-center">
+              <div class="icon-box">
+                <img src="../../../../assets/reading-student_icon.png" alt="">
+              </div>
+              <p class="mb-0 ms-3">100% Practical Learning</p>
+            </div>
+          </div> -->
+
+          <div class="my-3 pt-3  " style="border-top: 2px solid #F3F3F3 ;">
+            <div class="d-flex align-items-center">
+              <div class="icon-box">
+                <img src="../../../assets/images/teacher_icon.png" alt="">
+              </div>
+              <p class="mb-0 ms-3">20+ Faculties</p>
+            </div>
+          </div>
+
+          <div class="py-3"
+            style="border-top: 2px solid #F3F3F3 ; border-bottom: 2px solid #F3F3F3; margin-bottom: 30px;">
+            <div class="d-flex align-items-center">
+              <div class="icon-box">
+                <img src="../../../assets/images/video-call-webcam_icon.png" alt="">
+              </div>
+              <p class="mb-0 ms-3">
+                Personal 1 on 1 Online Spoken English Class
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-4">
+        <div class="right-card">
+          <!-- Form -->
+          <form [formGroup]="registrationForm">
+
+            <div class="row">
+
+              <!-- First Name -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label fw-semibold">
+                  First Name <span>*</span>
+                </label>
+                <input type="text" class="form-control custom-input" placeholder="Type your first name"
+                  formControlName="firstName" #firstNameInp>
+                @if(registrationForm.get('firstName')?.hasError('required') &&
+                registrationForm.get('firstName')?.touched){
+                <small class="text-danger">Field is required.</small>
+                }@else if(registrationForm.get('firstName')?.hasError('noSpace') && registrationForm.get('firstName')?.dirty){
+                <small class="text-danger">Spaces are not allowed.</small>
+                }
+              </div>
+
+              <!-- Last Name -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label fw-semibold">Last Name</label>
+                <input type="text" class="form-control custom-input" placeholder="Type your last name"
+                  formControlName="lastName">
+                @if(registrationForm.get('lastName')?.hasError('required') &&
+                registrationForm.get('lastName')?.touched){
+                <small class="text-danger">Field is required.</small>
+                }@else if(registrationForm.get('lastName')?.hasError('noSpace') && registrationForm.get('lastName')?.dirty){
+                <small class="text-danger">Spaces are not allowed.</small>
+                }
+              </div>
+
+              <!-- Contact Number -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label fw-semibold">
+                  Contact Number <span>*</span>
+                </label>
+                <input type="tel" class="form-control custom-input" placeholder="e.g. 9423165720"
+                  formControlName="contactNumber">
+                @if(registrationForm.get('contactNumber')?.hasError('required') &&
+                registrationForm.get('contactNumber')?.touched){
+                <small class="text-danger">Field is required.</small>
+                }@else if(registrationForm.get('contactNumber')?.hasError('noSpace') &&
+                registrationForm.get('contactNumber')?.dirty){
+                <small class="text-danger">Spaces are not allowed.</small>
+                }@else if (
+                registrationForm.get('contactNumber')?.hasError('mobileNumber') &&
+                registrationForm.get('contactNumber')?.touched
+                ) {
+                <small class="text-danger">
+                  Enter 10 digit your mobile number
+                </small>
+                }@else if (
+                registrationForm.get('contactNumber')?.hasError('numberOnly') &&
+                registrationForm.get('contactNumber')?.dirty
+                ) {
+                <small class="text-danger">
+                  Enter number only
+                </small>
+                }@else if (registrationForm.get('contactNumber')?.pending) {
+                <small class="text-primary">
+                  Checking contactNumber...
+                </small>
+                }@else if (registrationForm.get('contactNumber')?.hasError('contactNumberExists')) {
+                <small class="text-danger">
+                  Contact Number already exists.
+                </small>
+                }
+
+              </div>
+
+              <!-- Email -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label fw-semibold">Email</label>
+                <input type="email" class="form-control custom-input" placeholder="example@gmail.com"
+                  formControlName="email">
+                @if (registrationForm.get('email')?.hasError('required') && registrationForm.get('email')?.touched) {
+                <small class="text-danger">Field is required.</small>
+
+                } @else if (registrationForm.get('email')?.hasError('noSpace')) {
+                <small class="text-danger">Spaces are not allowed.</small>
+
+                } @else if (registrationForm.get('email')?.hasError('isEmailCorrect')) {
+                <small class="text-danger">Enter a valid email address.</small>
+
+                } @else if (registrationForm.get('email')?.pending) {
+                <small class="text-primary">
+                  Checking email...
+                </small>
+
+                } @else if (registrationForm.get('email')?.hasError('emailExists')) {
+                <small class="text-danger">
+                  Email already exists.
+                </small>
+                }
+              </div>
+
+              <!-- Password -->
+              <!-- <div class="col-md-6 mb-4">
+                <label class="form-label fw-semibold">Password</label>
+
+                <div class="position-relative">
+                  <input [type]="isPasswordHide ? 'text' : 'password'" class="form-control custom-input"
+                    placeholder="Enter your password" formControlName="password">
+
+                  <i class="bi position-absolute top-50 end-0 translate-middle-y me-3"
+                    [ngClass]="isPasswordHide ? 'bi-eye-slash' : 'bi-eye'" (click)="isPasswordHide = !isPasswordHide"
+                    style="cursor: pointer;">
+                  </i>
+                </div>
+                @if (
+                registrationForm.get('password')?.hasError('required') &&
+                registrationForm.get('password')?.touched
+                ) {
+                <small class="text-danger">
+                  field is required
+                </small>
+                }
+
+                <div *ngIf="password?.dirty && !isPasswordValid()" class="mt-2">
+
+                  <small [class.text-success]="hasMinLength()" [class.text-danger]="!hasMinLength()" >
+                   ✔ At least 8 characters
+                  </small><br>
+
+                  <small [class.text-success]="hasUppercase()" [class.text-danger]="!hasUppercase()">
+                    ✔ Starts with an uppercase letter
+                  </small><br>
+
+                  <small [class.text-success]="hasLowercase()" [class.text-danger]="!hasLowercase()">
+                    ✔ Contains at least one lowercase letter
+                  </small><br>
+
+                  <small [class.text-success]="hasNumber()" [class.text-danger]="!hasNumber()">
+                    ✔ Contains at least one number
+                  </small><br>
+
+                  <small [class.text-success]="hasSpecialChar()" [class.text-danger]="!hasSpecialChar()">
+                    ✔ Contains at least one special character
+                  </small>
+
+                </div>
+              </div> -->
+
+              <!-- Confirm Password -->
+              <!-- <div class="col-md-6 mb-4">
+                <label class="form-label fw-semibold">Confirm Password</label>
+                <input type="password" class="form-control custom-input" placeholder="Confirm password"
+                  formControlName="confirmPassword">
+                @if(registrationForm.get('confirmPassword')?.hasError('required') &&
+                registrationForm.get('confirmPassword')?.touched){
+                <small class="text-danger">field is required.</small>
+                }
+                @if (
+                registrationForm.get('confirmPassword')?.hasError('passwordChecking') &&
+                registrationForm.get('confirmPassword')?.dirty
+                ) {
+                <small class="text-danger">
+                  Passwords do not match.
+                </small>
+                }
+              </div> -->
+
+              <!-- Date of Birth -->
+              <!-- <div class="col-md-6 mb-4">
+                <label class="form-label fw-semibold">
+                  Date of Birth <span class="text-danger">*</span>
+                </label>
+                <input type="date" class="form-control custom-input" formControlName="dob">
+              </div> -->
+
+              <!-- District -->
+
+              <div class="col-12 mb-4 position-relative">
+                <label class="form-label fw-semibold">
+                  District <span>*</span>
+                </label>
+
+                <div class="input-group">
+                  <input type="text" class="form-control custom-input" placeholder="Search District..."
+                    formControlName="district" (input)="filterDistricts()" (focus)="showAllDistricts()"
+                    autocomplete="off">
+
+                  <button class="btn btn-outline-secondary" type="button" (click)="toggleDistrictDropdown()">
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                </div>
+
+                <ul class="list-group position-absolute w-100 shadow" *ngIf="showDistrictDropdown">
+
+                  <li class="list-group-item list-group-item-action" *ngFor="let district of filteredDistricts"
+                    (click)="selectDistrict(district)">
+                    {{ district }}
+                  </li>
+
+                </ul>
+
+
+                @if (
+                registrationForm.get('district')?.hasError('required') &&
+                registrationForm.get('district')?.touched
+                ) {
+                <small class="text-danger">
+                  Please select your district.
+                </small>
+                }
+              </div>
+
+              <!-- Qualification -->
+
+
+              <div class="col-12 mb-4 position-relative">
+                <label class="form-label fw-semibold">
+                  Qualification
+                </label>
+
+                <div class="input-group">
+                  <input type="text" class="form-control custom-input" placeholder="Search Qualification..."
+                    formControlName="qualification" (input)="filterQualifications()" (focus)="showAllQualifications()"
+                    autocomplete="off">
+
+                  <button class="btn btn-outline-secondary" type="button" (click)="toggleQualificationDropdown()">
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                </div>
+
+                <ul class="list-group position-absolute w-100 shadow" *ngIf="showQualificationDropdown">
+
+                  <li class="list-group-item list-group-item-action"
+                    *ngFor="let qualification of filteredQualifications" (click)="selectQualification(qualification)">
+                    {{ qualification }}
+                  </li>
+
+                </ul>
+
+                @if (
+                registrationForm.get('qualification')?.hasError('required') &&
+                registrationForm.get('qualification')?.touched
+                ) {
+                <small class="text-danger">
+                  Please select your qualification.
+                </small>
+                }
+              </div>
+
+              <!-- Occupation -->
+
+              <div class="col-12 mb-4 position-relative">
+                <label class="form-label fw-semibold">
+                  Occupation
+                </label>
+
+                <div class="input-group">
+
+                  <input type="text" class="form-control custom-input" placeholder="Search Occupation..."
+                    formControlName="occupation" (input)="filterOccupations()" (focus)="showAllOccupations()"
+                    autocomplete="off">
+
+                  <button class="btn btn-outline-secondary" type="button" (click)="toggleOccupationDropdown()">
+
+                    <i class="bi bi-chevron-down"></i>
+
+                  </button>
+
+                </div>
+
+                <ul class="list-group position-absolute w-100 shadow" *ngIf="showOccupationDropdown">
+
+                  <li class="list-group-item list-group-item-action" *ngFor="let occupation of filteredOccupations"
+                    (click)="selectOccupation(occupation)">
+
+                    {{ occupation }}
+
+                  </li>
+
+                </ul>
+
+
+                @if (
+                registrationForm.get('occupation')?.hasError('required') &&
+                registrationForm.get('occupation')?.touched
+                ) {
+                <small class="text-danger">
+                  Please select your occupation.
+                </small>
+                }
+              </div>
+            </div>
+
+          </form>
+
+
+
+        </div>
+
+        <div class="buttons d-flex justify-content-between pt-4 w-100">
+          <button class="back-button shadow-lg col-4" routerLink="/courses"><i class="bi bi-arrow-left"></i> Back</button>
+
+          <button type="button" class="regi-button shadow-lg col-4" (click)="onSubmit()">
+            @if (!isLoaderOn()) {
+            Register
+            } @else {
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            Registering...
+            }
+          </button>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

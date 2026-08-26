@@ -15,7 +15,9 @@
     "baseUrl": ".",
     "paths": {
       "@shared/*": ["projects/shared/services/*"],
-      "@shared-env/*": ["projects/shared/environments/*"]
+      "@shared-env/*": ["projects/shared/environments/*"],
+      "@shared-common/*": ["projects/Shared-common-list/*"],
+      "@validators/*": ["projects/shell/src/app/core/validator/*"]
     }
   },
   "angularCompilerOptions": {
@@ -55,6 +57,12 @@
     },
     {
       "path": "./projects/student-registration/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/registration-student/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/registration-student/tsconfig.spec.json"
     }
   ]
 }
