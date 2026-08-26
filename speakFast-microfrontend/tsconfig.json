@@ -15,7 +15,9 @@
     "baseUrl": ".",
     "paths": {
       "@shared/*": ["projects/shared/services/*"],
-      "@shared-env/*": ["projects/shared/environments/*"]
+      "@shared-env/*": ["projects/shared/environments/*"],
+      "@shared-common/*": ["projects/Shared-common-list/*"],
+      "@validators/*": ["projects/shell/src/app/core/validator/*"]
     }
   },
   "angularCompilerOptions": {
