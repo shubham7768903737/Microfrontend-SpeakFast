@@ -16,4 +16,9 @@ export const routes: Routes = [
         loadComponent: () => import('./components/student-registration-form/student-registration-form').then(m => m.StudentRegistrationForm),
         title: 'Student-Registration',
     },
+     {
+        path: 'cource',
+        loadComponent: () => import('./components/courses/courses').then(m => m.Courses),
+        title: 'Courses',
+    },
 ];
