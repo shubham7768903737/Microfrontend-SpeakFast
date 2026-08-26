@@ -1,1 +1,75 @@
-<p>courses works!</p>
+<section class="recommendation-page">
+  <!-- Decorative background blob -->
+  <div class="bg-blob"></div>
+
+  <!-- Decorative books image -->
+  <img
+    class="bg-books"
+    src="../../../../assets/stack-of-books.png"
+    alt="this is a book image"
+    aria-hidden="true"
+  />
+
+  <div class="page-header">
+    <span class="pill-badge">Find a perfect course</span>
+    <h1 class="page-title">
+      Your <span class="highlight">Course Recommendation</span>
+    </h1>
+    <p class="page-subtitle">Advance Course to build a strong foundation</p>
+  </div>
+
+  <div class="plans-grid">
+    <mat-card
+      *ngFor="let plan of plans"
+      class="plan-card"
+      [class.featured]="plan.featured"
+    >
+      <span class="badge" *ngIf="plan.badge">{{ plan.badge }}</span>
+
+      <h2 class="plan-name">{{ plan.name }}</h2>
+      <p class="plan-description">{{ plan.description }}</p>
+
+      <div class="price-block">
+        <span class="price-label">Course Price</span>
+        <div class="price-row">
+          <span class="price-current">₹{{ plan.price | number }}<span class="price-unit">/mo</span></span>
+          <span class="price-original">₹{{ plan.originalPrice | number }}<span class="price-unit">/mo</span></span>
+          <span class="discount-chip">{{ plan.discount }}</span>
+        </div>
+      </div>
+
+      <div class="info-boxes">
+        <div class="info-box">
+          <span class="info-label">Duration</span>
+          <span class="info-value">
+            <mat-icon>schedule</mat-icon>
+            {{ plan.duration }}
+          </span>
+        </div>
+        <div class="info-box">
+          <span class="info-label">Live Sessions</span>
+          <span class="info-value no-icon">{{ plan.liveSessions }}</span>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="learn-section">
+        <span class="learn-title">What you'll learn:</span>
+        <ul class="learn-list">
+          <li *ngFor="let item of plan.learnItems">
+            <mat-icon class="check-icon">check_circle</mat-icon>
+            <span>{{ item }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <hr class="divider" />
+
+      <button mat-flat-button class="enroll-btn" (click)="enroll(plan) " routerLink="/registration">
+        Enroll Now
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-card>
+  </div>
+</section>
