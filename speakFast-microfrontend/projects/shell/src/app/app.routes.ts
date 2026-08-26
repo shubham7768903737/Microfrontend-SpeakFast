@@ -78,7 +78,7 @@ export const routes: Routes = [
 	},
 
   	{
-		path: 'studentRegistration',
+		path: 'registrationStudent',
 		loadChildren: () =>
 			loadRemoteModule({
 				type: 'module',
