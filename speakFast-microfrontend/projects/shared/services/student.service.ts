@@ -8,43 +8,43 @@ import { BehaviorSubject, Observable } from "rxjs";
 })
 export class StudentService {
 
-     teacherId = new BehaviorSubject<string|null>(null);
-     soltId = new BehaviorSubject<string|null>(null);
-     courseName = new BehaviorSubject<string|null>(null);
-     coursePrice = new BehaviorSubject<string|null>(null);
+     teacherId = new BehaviorSubject<String|null>(null);
+     soltId = new BehaviorSubject<String|null>(null);
+     courseName = new BehaviorSubject<String|null>(null);
+     coursePrice = new BehaviorSubject<String|null>(null);
      emailId = new BehaviorSubject<string>(  sessionStorage.getItem('forgotPassEmail') ?? '');
 
     constructor(private http:HttpClient){}
 
-    setTeacherId(data: string){
+    setTeacherId(data: String){
        this.teacherId.next(data);
     }
 
-    getTeacherId():string|null{
+    getTeacherId():String|null{
       return this.teacherId.getValue();
     }
 
-    setSlotId(data: string){
+    setSlotId(data: String){
        this.soltId.next(data);
     }
 
-    getSlotId():string|null{
+    getSlotId():String|null{
       return this.soltId.getValue();
     }
 
-    setCourseName(data: string){
+    setCourseName(data: String){
        this.courseName.next(data);
     }
 
-    getCourseName():string|null{
+    getCourseName():String|null{
       return this.courseName.getValue();
     }
 
-    setCoursePrice(data: string){
+    setCoursePrice(data: String){
        this.coursePrice.next(data);
     }
 
-    getCoursePrice():string|null{
+    getCoursePrice():String|null{
       return this.coursePrice.getValue();
     }
 
