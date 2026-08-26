@@ -332,6 +332,7 @@
         }
       }
     },
+   
     "registration-student": {
       "projectType": "application",
       "schematics": {},
@@ -348,9 +349,20 @@
                 "glob": "**/*",
                 "input": "projects/registration-student/public",
                 "output": "."
-              }
+              },
+              {
+              "glob": "**/*",
+              "input": "projects/registration-student/src/assets",
+              "output": "assets"
+            }
             ],
-            "styles": ["projects/registration-student/src/styles.css"],
+            "styles": [
+              "projects/registration-student/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
             "main": "projects/registration-student/src/main.ts",
             "outputPath": "dist/registration-student",
             "index": "projects\\registration-student\\src\\index.html",
