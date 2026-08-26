@@ -332,84 +332,7 @@
         }
       }
     },
-    "student-registration": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/student-registration",
-      "sourceRoot": "projects/student-registration/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "ngx-build-plus:browser",
-          "options": {
-            "tsConfig": "projects/student-registration/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/student-registration/public",
-                "output": "."
-              }
-            ],
-            "styles": ["projects/student-registration/src/styles.scss"],
-            "main": "projects/student-registration/src/main.ts",
-            "outputPath": "dist/student-registration",
-            "index": "projects\\student-registration\\src\\index.html",
-            "extraWebpackConfig": "projects/student-registration/webpack.config.js",
-            "commonChunk": false
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
-              ],
-              "outputHashing": "all",
-              "extraWebpackConfig": "projects/student-registration/webpack.prod.config.js"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "ngx-build-plus:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "student-registration:build:production",
-              "extraWebpackConfig": "projects/student-registration/webpack.prod.config.js"
-            },
-            "development": {
-              "buildTarget": "student-registration:build:development"
-            }
-          },
-          "defaultConfiguration": "development",
-          "options": {
-            "port": 4204,
-            "publicHost": "http://localhost:4204",
-            "extraWebpackConfig": "projects/student-registration/webpack.config.js"
-          }
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
-        }
-      }
-    },
+   
     "registration-student": {
       "projectType": "application",
       "schematics": {},
@@ -426,9 +349,20 @@
                 "glob": "**/*",
                 "input": "projects/registration-student/public",
                 "output": "."
-              }
+              },
+              {
+              "glob": "**/*",
+              "input": "projects/registration-student/src/assets",
+              "output": "assets"
+            }
             ],
-            "styles": ["projects/registration-student/src/styles.css"],
+            "styles": [
+              "projects/registration-student/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/ngx-toastr/toastr.css"
+            ],
             "main": "projects/registration-student/src/main.ts",
             "outputPath": "dist/registration-student",
             "index": "projects/registration-student/src/index.html",

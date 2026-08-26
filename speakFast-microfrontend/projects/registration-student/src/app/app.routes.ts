@@ -1,15 +1,19 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
- {
-    path: '',
-    redirectTo: 'student-registration',
-    pathMatch: 'full'
-  },
-  {
-    path: 'student-registration',
-    loadComponent: () =>
-      import('./components/student-registration-form/student-registration-form')
-        .then(m => m.StudentRegistrationForm)
-  }
+    {
+        path: '',
+        loadComponent: () => import('./components/teachers-slots/teachers-slots').then(m => m.TeachersSlots),
+        title: 'TeachersSlots',
+    },
+    {
+        path: 'teacherslot',
+        loadComponent: () => import('./components/teachers-slots/teachers-slots').then(m => m.TeachersSlots),
+        title: 'TeachersSlots',
+    },
+    {
+        path: 'student-registration',
+        loadComponent: () => import('./components/student-registration-form/student-registration-form').then(m => m.StudentRegistrationForm),
+        title: 'Student-Registration',
+    },
 ];

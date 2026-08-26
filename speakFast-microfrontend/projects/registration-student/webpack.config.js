@@ -6,7 +6,7 @@ const {
 module.exports = withModuleFederationPlugin({
   name: 'registration-student',
 
-  exposes: {
+ exposes: {
   './Component': './projects/registration-student/src/app/app.ts',
 },
 
