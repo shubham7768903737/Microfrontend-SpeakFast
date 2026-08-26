@@ -431,7 +431,7 @@
             "styles": ["projects/registration-student/src/styles.css"],
             "main": "projects/registration-student/src/main.ts",
             "outputPath": "dist/registration-student",
-            "index": "projects\\registration-student\\src\\index.html",
+            "index": "projects/registration-student/src/index.html",
             "extraWebpackConfig": "projects/registration-student/webpack.config.js",
             "commonChunk": false
           },
