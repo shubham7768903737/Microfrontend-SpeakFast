@@ -25,7 +25,7 @@ interface TabItem {
 
   ],
   templateUrl: './admin.html',
-  styleUrl: './admin.css',
+  styleUrls: ['./admin.css'],
 })
 export class Admin {
   studentCount = signal(0);

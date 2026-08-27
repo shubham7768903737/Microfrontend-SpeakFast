@@ -1,1 +1,149 @@
-<p>admin-allstudents works!</p>
+<div class="enrollments-wrapper">
+
+
+  <!-- Header row -->
+  <div class="header-row">
+    <div class="title-count">{{ studentLength() }} total enrollments</div>
+
+    <div class="header-actions">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-icon matPrefix class="search-icon">search</mat-icon>
+        <input matInput type="text" placeholder="Search Students..." [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()" />
+      </mat-form-field>
+
+      <button mat-stroked-button class="date-btn" (click)="picker.open()">
+        <mat-icon>calendar_today</mat-icon>
+        <span>{{ selectedDate ? (selectedDate | date:'MMM d, y') : 'Select Date' }}</span>
+        <mat-icon *ngIf="selectedDate" class="clear-date-icon" (click)="clearDate($event)">close</mat-icon>
+
+        <input [matDatepicker]="picker" [ngModel]="selectedDate" (dateChange)="onDateSelected($event.value)"
+          class="hidden-date-input" />
+        <mat-datepicker #picker></mat-datepicker>
+      </button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <mat-progress-bar *ngIf="loading()" mode="indeterminate">
+    </mat-progress-bar>
+
+
+    <table class="enrollments-table">
+
+      <thead>
+        <tr>
+          <th class="col-name">
+            Name <mat-icon class="sort-icon">unfold_more</mat-icon>
+          </th>
+          <th class="col-contact">Contact</th>
+          <th class="col-plan">Plan</th>
+          <th class="col-date">
+            Enrolled <mat-icon class="sort-icon">unfold_more</mat-icon>
+          </th>
+          <th class="col-date">
+            End <mat-icon class="sort-icon">unfold_more</mat-icon>
+          </th>
+          <th class="col-slot">Time Slot</th>
+          <th class="col-action">Class</th>
+          <th class="col-action">Action</th>
+        </tr>
+      </thead>
+      <!-- loader added -->
+
+
+      <tbody>
+        <tr *ngFor="let student of paginatedStudents" class="tbody-row">
+          <!-- Name -->
+          <td class="col-name" data-label="Name">
+            <div class="name-cell">
+              <div class="avatar">
+                {{ (student.firstName?.charAt(0) || '') + (student.lastName?.charAt(0) || '') }}
+              </div>
+              <span class="name-text">{{ student.firstName }} {{ student.lastName }}</span>
+            </div>
+          </td>
+
+          <!-- Contact -->
+          <td class="col-contact" data-label="Contact">
+            <div class="contact-line">
+              <mat-icon class="contact-icon">mail</mat-icon>
+              <span>{{ student.email }}</span>
+            </div>
+            <div class="contact-line">
+              <mat-icon class="contact-icon">call</mat-icon>
+              <span>{{ student.contactNumber }}</span>
+            </div>
+          </td>
+
+          <!-- Plan -->
+          <td class="col-plan" data-label="Plan">
+            <div class="plan-name">{{ student.plan }}</div>
+            <div class="plan-teacher">with {{ student.teacher }}</div>
+          </td>
+
+          <!-- Enrolled -->
+          <td class="col-date" data-label="Enrolled">{{ student.enrolledDate }}</td>
+
+          <!-- End -->
+          <td class="col-date" data-label="End">{{ student.endDate }}</td>
+
+          <!-- Time Slot -->
+          <td class="col-slot" data-label="Time Slot">{{ student.timeSlot }}</td>
+
+            <!-- Class / Meet button -->
+          <td class="col-class" data-label="Class">
+            
+            <a *ngIf="student.googleMeetLink"
+              mat-flat-button
+              class="meet-btn"
+              [href]="student.googleMeetLink"
+              target="_blank"
+              rel="noopener">
+              <mat-icon class="meet-icon">videocam</mat-icon>
+              <span>Meet</span>
+            </a>
+
+            <span *ngIf="!student.googleMeetLink" class="no-meet"> — </span>
+          </td>
+
+          <!-- Action -->
+          <td class="col-action" data-label="Action">
+            <ng-container *ngIf="student.status !== 'pending'">
+              <button mat-icon-button class="edit-btn" aria-label="Edit" (click)="onEdit(student)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button class="delete-btn" aria-label="Delete" type="" (click)="onDelete(student)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </ng-container>
+
+          </td>
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    <!-- Pagination -->
+    <div class="pagination-bar" *ngIf="!loading() && filteredStudents.length > 0">
+      <button mat-icon-button class="page-arrow" [disabled]="currentPage() === 1" (click)="prevPage()">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+
+      <ng-container *ngFor="let page of pageNumbers">
+        <span *ngIf="page === '...'" class="page-ellipsis">...</span>
+        <button
+          *ngIf="page !== '...'"
+          class="page-number"
+          [class.active]="page === currentPage()"
+          (click)="goToPage(page)">
+          {{ page }}
+        </button>
+      </ng-container>
+
+      <button mat-icon-button class="page-arrow" [disabled]="currentPage() === totalPages" (click)="nextPage()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+</div>
