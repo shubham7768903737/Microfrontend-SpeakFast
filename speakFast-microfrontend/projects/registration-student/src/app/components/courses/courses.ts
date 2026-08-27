@@ -94,7 +94,7 @@ export class Courses {
   // }
   enroll(plan: Plan): void {
 
-    this.studServ.setCourseName(plan.name);
+    this.studServ.setCourseName(plan.name.toLowerCase());
     this.studServ.setCoursePrice(plan.price.toString());
 
     console.log("COURSE SAVED:",

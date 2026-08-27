@@ -17,7 +17,7 @@ export const routes: Routes = [
         title: 'Student-Registration',
     },
      {
-        path: 'cource',
+        path: 'course',
         loadComponent: () => import('./components/courses/courses').then(m => m.Courses),
         title: 'Courses',
     },
