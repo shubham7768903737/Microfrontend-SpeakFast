@@ -6,7 +6,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { AdminAllstudents } from './admin-allstudents/admin-allstudents';
 import { AdminRecentEnrollmentsAllStudent } from './admin-recent-enrollments-all-student/admin-recent-enrollments-all-student';
 import { AdminTeachers } from './admin-teachers/admin-teachers';
-import { Router, RouterOutlet } from '@angular/router';
 
 interface TabItem {
   label: string;
