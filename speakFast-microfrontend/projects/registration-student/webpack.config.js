@@ -9,7 +9,6 @@ module.exports = withModuleFederationPlugin({
  exposes: {
   './Component': './projects/registration-student/src/app/app.ts',
 },
-
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
   },
