@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterOutlet } from '@angular/router';
+// import { RouterOutlet } from "../../../../../../node_modules/@angular/router/types/_router_module-chunk";
 import { AdminAllstudents } from './admin-allstudents/admin-allstudents';
 import { AdminRecentEnrollmentsAllStudent } from './admin-recent-enrollments-all-student/admin-recent-enrollments-all-student';
 import { AdminTeachers } from './admin-teachers/admin-teachers';
@@ -22,8 +24,8 @@ interface TabItem {
     AdminAllstudents,
     AdminRecentEnrollmentsAllStudent,
     AdminTeachers
-
-  ],
+    // RouterOutlet
+],
   templateUrl: './admin.html',
   styleUrls: ['./admin.css'],
 })

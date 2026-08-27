@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 export const adminRoutes: Routes = [
-
   {
     path: '',
     loadComponent: () =>
@@ -23,13 +22,6 @@ export const adminRoutes: Routes = [
       },
 
       {
-        path: 'students',
-        loadComponent: () =>
-          import('./admin-allstudents/admin-allstudents')
-            .then(m => m.AdminAllstudents)
-      },
-
-      {
         path: 'teachers',
         loadComponent: () =>
           import('./admin-teachers/admin-teachers')
@@ -37,13 +29,12 @@ export const adminRoutes: Routes = [
       },
 
       {
-        path: 'upcoming-batches',
+        path: 'students',
         loadComponent: () =>
-          import('./admin-upcoming-batches/admin-upcoming-batches')
-            .then(m => m.AdminUpcomingBatches)
+          import('./admin-allstudents/admin-allstudents')
+            .then(m => m.AdminAllstudents)
       }
 
     ]
   }
-
 ];
