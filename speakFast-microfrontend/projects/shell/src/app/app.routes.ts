@@ -86,6 +86,6 @@ export const routes: Routes = [
 				exposedModule: './Routes',
 			}).then((module) => module.routes),
 	},
-	{ path: '', pathMatch: 'full', redirectTo: 'admin' },
+	{ path: '', pathMatch: 'full', redirectTo: 'registrationStudent' },
 	{ path: '**', redirectTo: 'admin' },
 ];

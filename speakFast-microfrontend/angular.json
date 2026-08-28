@@ -332,7 +332,7 @@
         }
       }
     },
-   
+
     "registration-student": {
       "projectType": "application",
       "schematics": {},
