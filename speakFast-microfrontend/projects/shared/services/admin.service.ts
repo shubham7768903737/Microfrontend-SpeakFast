@@ -17,18 +17,31 @@ export class AdminService {
   }
 
   // ===================== Teachers =====================
+  // getAllTeachers(): Observable<any> {
+  //   // const token = localStorage.getItem('token');
+
+  //   // const headers = new HttpHeaders({
+  //   //   Authorization: `Bearer ${token}`
+  //   // });
+
+  //   return this.http.get(
+  //     `${environment.apiUrl}/teacher/getAllTeachers`,
+
+  //   );
+  // }
+
   getAllTeachers(): Observable<any> {
-    // const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
-    // const headers = new HttpHeaders({
-    //   Authorization: `Bearer ${token}`
-    // });
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
 
-    return this.http.get(
-      `${environment.apiUrl}/teacher/getAllTeachers`,
-
-    );
-  }
+  return this.http.get(
+    `${environment.apiUrl}/teacher/getAllTeachers`,
+    { headers }
+  );
+}
 
   // ===================== Register Teacher =====================
   addTeacher(
