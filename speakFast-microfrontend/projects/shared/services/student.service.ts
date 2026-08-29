@@ -20,6 +20,10 @@ export class StudentService {
        this.teacherId.next(data);
     }
 
+    isSelectionComplete(): boolean {
+      return !!this.teacherId.getValue() && !!this.soltId.getValue();
+    }
+    
     getTeacherId():string|null{
       return this.teacherId.getValue();
     }

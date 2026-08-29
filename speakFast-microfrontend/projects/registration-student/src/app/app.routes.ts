@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { CouserGuard } from '../core/gurards/coursesGuard.guard';
 
 export const routes: Routes = [
     {
@@ -20,5 +21,6 @@ export const routes: Routes = [
         path: 'course',
         loadComponent: () => import('./components/courses/courses').then(m => m.Courses),
         title: 'Courses',
+        canActivate: [CouserGuard]
     },
 ];

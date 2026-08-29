@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -199,7 +199,7 @@ export class TeachersSlots implements OnInit {
     this.selectedSlotId = slotId;
   }
 
- 
+
   if (this.errorTeacherId === teacherId) {
     this.errorTeacherId = null;
   }
@@ -215,7 +215,7 @@ export class TeachersSlots implements OnInit {
     this.selectedTeacherId = id;
   }
 
-  
+
   onBookSeatClick(teacherId: string): void {
     const slotChosen = this.selectedTeacherId === teacherId && this.selectedSlotId;
 
@@ -241,10 +241,11 @@ export class TeachersSlots implements OnInit {
     console.log('Teacher Id :', typeof this.selectedTeacherId);
     console.log('Slot Id :', this.selectedSlotId);
 
+    // console.log(this.isSelectionCompleted());
     this.studServ.setTeacherId(this.selectedTeacherId);
     this.studServ.setSlotId(this.selectedSlotId);
 
-    this.router.navigate(['/courses']);
+    this.router.navigate(['/course']);
   }
 
   // reset filter
