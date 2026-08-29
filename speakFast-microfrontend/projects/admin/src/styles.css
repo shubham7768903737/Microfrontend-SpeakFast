@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/azure-blue.css';
 
@@ -314,10 +316,18 @@ mat-progress-bar {
   --mdc-linear-progress-track-color: #E9E9E9 !important;
 }
 
-::ng-deep mat-progress-bar .mdc-linear-progress__bar-inner {
+/* ::ng-deep mat-progress-bar .mdc-linear-progress__bar-inner {
   border-color: #005eeb !important;
 }
 
 ::ng-deep mat-progress-bar .mdc-linear-progress__buffer-bar {
+  background-color: #E9E9E9 !important;
+} */
+
+mat-progress-bar .mdc-linear-progress__bar-inner {
+  border-color: #005eeb !important;
+}
+
+mat-progress-bar .mdc-linear-progress__buffer-bar {
   background-color: #E9E9E9 !important;
 }

@@ -26,7 +26,7 @@ import { provideToastr, ToastrService } from 'ngx-toastr';
     MatButtonModule,
     MatIconModule, RouterLink, ReactiveFormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrls: ['./login.css'],
 })
 export class Login {
 

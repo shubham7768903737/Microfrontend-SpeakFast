@@ -1,14 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/azure-blue.css';
 
 * {
   box-sizing: border-box;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 html,
 body {
-  min-height: 100%;   
+  min-height: 100%;
   overflow-x: hidden;
 }
 
@@ -168,9 +170,9 @@ mat-toolbar,
 
 /* YES DELETE BUTTON */
 .custom-confirm-btn {
-  background: #FC2821 !important;
+  background: #fc2821 !important;
   color: #ffffff !important;
-  border: 1px solid #FC2821 !important;
+  border: 1px solid #fc2821 !important;
 }
 
 /* CANCEL BUTTON */
@@ -308,16 +310,23 @@ body.swal2-shown {
   z-index: 999999 !important;
 }
 
-
 mat-progress-bar {
   --mdc-linear-progress-active-indicator-color: #005eeb !important;
-  --mdc-linear-progress-track-color: #E9E9E9 !important;
+  --mdc-linear-progress-track-color: #e9e9e9 !important;
 }
 
-::ng-deep mat-progress-bar .mdc-linear-progress__bar-inner {
+/* ::ng-deep mat-progress-bar .mdc-linear-progress__bar-inner {
   border-color: #005eeb !important;
 }
 
 ::ng-deep mat-progress-bar .mdc-linear-progress__buffer-bar {
+  background-color: #e9e9e9 !important;
+} */
+
+mat-progress-bar .mdc-linear-progress__bar-inner {
+  border-color: #005eeb !important;
+}
+
+mat-progress-bar .mdc-linear-progress__buffer-bar {
   background-color: #E9E9E9 !important;
-} 
+}
