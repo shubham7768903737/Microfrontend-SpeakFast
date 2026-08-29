@@ -22,7 +22,7 @@
 
 <section class="tab-content" [ngSwitch]="activeTab()">
 
-    <div *ngSwitchCase="'recent'" class="content-panel">
+    <div *ngSwitchCase="'recent'" class="content-panel"> 
         <app-admin-recent-enrollments-all-student></app-admin-recent-enrollments-all-student>
     </div>
 
@@ -33,5 +33,5 @@
     <div *ngSwitchCase="'students'" class="content-panel">
         <app-admin-allstudents (shareTotalCOunt)="totalStudentCount($event)"></app-admin-allstudents>
     </div>
-
+<!-- <router-outlet></router-outlet> -->
 </section>

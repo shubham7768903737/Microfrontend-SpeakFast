@@ -1,30 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Inject, OnInit, output, signal } from '@angular/core';
+import { ChangeDetectorRef, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button';
-import { MatFormField, MatPrefix } from '@angular/material/form-field';
-import { MatIcon } from '@angular/material/icon';
-import { MatInput } from '@angular/material/input';
+import {  MatButtonModule} from '@angular/material/button';
+import {  MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { ViewChild, ElementRef } from '@angular/core';
 import { AddTeacherDialog } from './add-teacher-dialog/add-teacher-dialog';
-import { MatProgressBar } from '@angular/material/progress-bar';
+import {  MatProgressBarModule } from '@angular/material/progress-bar';
 import { AlertService } from '@shared/alert.service';
-import { TeacherService} from '@shared/teacher.service';
+import { Teacher, TeacherService } from '@shared/teacher.service';
+import { AdminService } from '@shared/admin.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-export interface Teacher {
-  _id: string;
-  userId: {
-    firstName: string;
-    lastName: string;
-    email: string;
-  };
-  photo?: string;
-  contactNumber?: string;
-  aadharNo?: string;
-  slots: { date?: string; time?: string; startTime?: string }[];
-  googleMeetLink?: string;
-}
 
 @Component({
   selector: 'app-admin-teachers',
@@ -32,15 +23,15 @@ export interface Teacher {
   imports: [
     CommonModule,
     FormsModule,
-    MatButton,
-    MatIconButton,
-    MatAnchor,
-    MatIcon,
-    MatFormField,
-    MatPrefix,
-    MatInput,
-    MatProgressBar,
-    AddTeacherDialog
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    AddTeacherDialog,
+    MatProgressBarModule
   ],
   templateUrl: './admin-teachers.html',
   styleUrl: './admin-teachers.css',
@@ -62,9 +53,9 @@ export class AdminTeachers implements OnInit {
   @ViewChild('firstNameInput') firstNameInput!: ElementRef;
 
   constructor(
-    @Inject(TeacherService) private teacherService: TeacherService,
+    private teacherService: TeacherService,
+    private adminService: AdminService,
     private cdr: ChangeDetectorRef,
-    @Inject(AlertService) 
     private alertService: AlertService
   ) { }
 
@@ -76,7 +67,7 @@ export class AdminTeachers implements OnInit {
     this.loading.set(true);
 
 
-    this.teacherService.getTeachers().subscribe({
+    this.adminService.getAllTeachers().subscribe({
       next: (res: any) => {
         console.log('TEACHER API RESPONSE:', res);
 
@@ -90,7 +81,7 @@ export class AdminTeachers implements OnInit {
         this.cdr.detectChanges();
 
         // teacher cout
-        this.shareTeacherCount.emit(res.total);
+        this.shareTeacherCount.emit(res.total)
       },
 
       error: (err: any) => {
@@ -234,7 +225,7 @@ export class AdminTeachers implements OnInit {
       return;
     }
 
-    this.teacherService.deleteTeacher(teacher._id).subscribe({
+    this.adminService.deleteSpecificTeacher(teacher._id).subscribe({
 
       next: () => {
 

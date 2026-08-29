@@ -59,9 +59,8 @@
   display: none;
 }
 .search-field ::ng-deep .mat-mdc-text-field-wrapper {
-   min-height: 44px;
+  min-height: 44px;
   background: #ffffff;
-
 }
 
 .search-field ::ng-deep .mat-mdc-form-field-infix {
@@ -69,9 +68,8 @@
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 6px;
- flex: 1;
-} 
-  
+  flex: 1;
+}
 
 .search-field ::ng-deep .mdc-notched-outline__leading {
   border-radius: 8px 0 0 8px !important;
@@ -90,7 +88,6 @@
 
 .search-field input {
   font-size: 16px;
- 
 }
 
 .add-btn {
@@ -101,7 +98,6 @@
   border-radius: 25px !important;
   font-weight: 600;
   white-space: nowrap;
-  
 }
 
 .add-btn mat-icon {
@@ -159,12 +155,25 @@
   color: #b7bcc5;
 }
 
-.col-name { width: 22%; }
-.col-contact { width: 24%; }
-.col-aadhar { width: 16%; }
-.col-timeslot { width: 14%; }
-.col-class { width: 12%; }
-.col-action { width: 12%; text-align: left; }
+.col-name {
+  width: 22%;
+}
+.col-contact {
+  width: 24%;
+}
+.col-aadhar {
+  width: 16%;
+}
+.col-timeslot {
+  width: 14%;
+}
+.col-class {
+  width: 12%;
+}
+.col-action {
+  width: 12%;
+  text-align: left;
+}
 
 /* Body rows */
 .student-table tbody td {
@@ -246,14 +255,14 @@
 
 .slot-badge {
   background: #eef2ff;
-  color: #1967D2;
+  color: #1967d2;
   font-size: 13px;
   font-weight: 600;
   padding: 8px;
   border-radius: 50px;
   text-align: center;
   white-space: nowrap;
-  border: 1px solid #1967D2;
+  border: 1px solid #1967d2;
 }
 
 /* Meet button */

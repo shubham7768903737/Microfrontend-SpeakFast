@@ -1,0 +1,630 @@
+:host {
+  display: block;
+  font-family: 'Quicksand' sans-serif;
+}
+
+/* .enrollments-wrapper {
+  padding: 8px 4px;
+} */
+
+/* ---------- Header row ---------- */
+
+
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.title-count {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.header-actions {
+  display: flex;
+  /* align-items: center; */
+  gap: 12px;
+}
+
+.search-field {
+  width: 260px;
+}
+
+.search-icon {
+  color: #6b7280;
+  margin-right: 4px;
+}
+
+.filter-icon {
+  color: #6b7280;
+  cursor: pointer;
+}
+/* search student button */
+.search-field ::ng-deep .mdc-notched-outline__leading,
+.search-field ::ng-deep .mdc-notched-outline__notch,
+.search-field ::ng-deep .mdc-notched-outline__trailing {
+  border-color: #E0E0E0 !important;
+  border-width: 1px !important;
+}
+
+.search-field ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+.search-field ::ng-deep .mat-mdc-text-field-wrapper {
+   min-height: 44px;
+  background: #ffffff;
+
+}
+
+.search-field ::ng-deep .mat-mdc-form-field-infix {
+  min-height: 44px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 6px;
+ flex: 1;
+} 
+  
+
+.search-field ::ng-deep .mdc-notched-outline__leading {
+  border-radius: 8px 0 0 8px !important;
+  width: 12px !important;
+}
+
+.search-field ::ng-deep .mdc-notched-outline__trailing {
+  border-radius: 0 8px 8px 0 !important;
+  flex: 1 0 auto !important;
+}
+
+.search-field ::ng-deep .mdc-notched-outline__notch {
+  border-radius: 0 !important;
+  max-width: calc(100% - 24px) !important;
+}
+
+.search-field input {
+  font-size: 16px;
+  color: #475569;
+  font-weight: 500;
+}
+/* Tighten default Material form field spacing */
+::ng-deep .search-field .mat-mdc-text-field-wrapper {
+  height: 44px;
+  border-radius: 8px;
+}
+
+::ng-deep .search-field .mat-mdc-form-field-flex {
+  align-items: center;
+  height: 44px;
+}
+
+::ng-deep .search-field .mat-mdc-form-field-infix {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: unset;
+}
+
+.date-btn {
+  position: relative;
+  height: 44px;
+  border-radius: 12px !important;
+  border: 1px solid #E0E0E0;
+  color: #475569;;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.date-btn mat-icon {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  color: #666;
+}
+
+.date-btn .clear-date-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  color: #a0a5ab;
+}
+
+.date-btn .clear-date-icon:hover {
+  color: #e0483e;
+}
+
+.hidden-date-input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  border: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Style the Angular Material calendar panel to match the theme */
+::ng-deep .mat-datepicker-content {
+  background-color: #fafbfc !important;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep .mat-calendar {
+  background-color: #fafbfc;
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: #4a7dfc !important;
+  color: #fff !important;
+}
+
+::ng-deep .mat-datepicker-toggle-active {
+  color: #4a7dfc !important;
+}
+
+/* ---------- Table card ---------- */
+
+.tbody-row{
+  border-top: 2px solid #E0E0E0 ;
+}
+
+.table-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  overflow-x: auto;
+}
+
+.enrollments-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.enrollments-table thead tr {
+  border-bottom: 1px solid #eef0f2;
+}
+
+.enrollments-table th {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 700;
+  color: #475569;
+  padding: 16px 20px;
+  white-space: nowrap;
+}
+
+.sort-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  vertical-align: middle;
+  color: #c2c6cc;
+  margin-left: 2px;
+}
+
+.enrollments-table tbody tr {
+  border-bottom: 1px solid #f2f3f5;
+  transition: background-color 0.15s ease;
+}
+
+.enrollments-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.enrollments-table tbody tr:hover {
+  background-color: #fafbfc;
+}
+
+.enrollments-table td {
+  padding: 14px 20px;
+  color: #0F172A;
+  font-size: 16px;
+  font-weight: 600;
+  vertical-align: top;
+}
+
+/* ---------- Name column ---------- */
+
+.name-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #4a7dfc;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.name-text {
+  font-weight: 700;
+  color: #0F172A;
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+/* ---------- Contact column ---------- */
+
+.col-contact {
+  min-width: 190px;
+}
+
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #0F172A;
+  font-size: 16px;
+  line-height: 1.8;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.contact-icon {
+  font-size: 15px;
+  height: 15px;
+  width: 15px;
+  color: #a0a5ab;
+}
+
+/* ---------- Plan column ---------- */
+
+.col-plan {
+  min-width: 150px;
+}
+
+.plan-name {
+  font-weight: 600;
+  color: #0F172A;
+  font-size: 16px;
+}
+
+.plan-teacher {
+  color: #475569;
+  font-size: 14px;
+  margin-top: 2px;
+  font-weight: 500;
+ 
+}
+
+/* ---------- Date / Slot columns ---------- */
+
+.col-date,
+.col-slot {
+  color: #333;
+  font-size: 13.5px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* class meet link */
+
+/* Meet button */
+.meet-btn {
+  display: inline-flex !important;
+  align-items: center;
+  background-color: #22a352 !important;
+  color: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 0 14px !important;
+  height: 34px;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: none;
+  line-height: 34px;
+  box-shadow: none !important;
+  text-decoration: none;
+}
+
+.meet-btn .meet-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+}
+
+.no-meet {
+  color: #b7bcc5;
+}
+
+/* ---------- Action column ---------- */
+
+.col-action {
+  white-space: nowrap;
+}
+
+.edit-btn,
+.delete-btn {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 8px !important;
+}
+
+.edit-btn {
+  background-color: #f2f3f5;
+  color: #555;
+  margin-right: 8px;
+}
+
+.edit-btn mat-icon,
+.delete-btn mat-icon {
+  font-size: 18px;
+  height: 25px;
+  width: 18px;
+  line-height: 18px;
+}
+
+.delete-btn {
+  background-color: #fdeceb;
+  color: #e0483e;
+}
+
+/* Pending state */
+
+.pending-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.pending-badge {
+  background-color: #fff2d9;
+  color: #d38a13;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.pending-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.accept-btn,
+.reject-btn {
+  border-radius: 8px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  padding: 0 14px !important;
+  line-height: 32px !important;
+  min-width: unset !important;
+}
+
+.accept-btn {
+  background-color: #22c55e !important;
+  color: #fff !important;
+}
+
+.reject-btn {
+  background-color: #ef4444 !important;
+  color: #fff !important;
+}
+
+/* Pagination */
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px 0 8px;
+}
+
+.page-arrow {
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  color: #6b7280;
+}
+
+.page-arrow mat-icon {
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.page-arrow:disabled {
+  color: #d1d5db;
+}
+
+.page-number {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #4a4f58;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0 6px;
+}
+
+.page-number:hover:not(.active) {
+  background: #f2f3f5;
+}
+
+.page-number.active {
+  background: #1f2329;
+  color: #ffffff;
+}
+
+.page-ellipsis {
+  color: #b7bcc5;
+  font-size: 13px;
+  padding: 0 2px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+/* ---------- Tablet: header row + search field adjust ---------- */
+@media (max-width: 900px) {
+  .search-field {
+    width: 220px;
+  }
+}
+
+/* ---------- Mobile: stack header, convert table to cards ---------- */
+@media (max-width: 768px) {
+
+  /* Header row stacks and everything goes full-width */
+  .header-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-field,
+  .date-btn {
+    width: 100%;
+  }
+
+  .date-btn {
+    justify-content: flex-start;
+  }
+
+  /* Table card no longer needs horizontal scroll once rows become cards */
+  .table-card {
+    overflow-x: visible;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  /* FIX: table/tbody must also leave table-layout mode — leaving these as
+     display:table / table-row-group while tr/td below are block/flex is
+     invalid table structure and renders inconsistently across browsers. */
+  .enrollments-table,
+  .enrollments-table tbody {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .enrollments-table {
+    min-width: 0;
+  }
+
+  /* Hide the header row visually (still present for accessibility) */
+  .enrollments-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Each row becomes its own card */
+  .enrollments-table tbody tr {
+    display: block;
+    background: #ffffff;
+    border: 1px solid #eef0f2;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+
+  .enrollments-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Every cell: label on top (small, grey), value below — all left-aligned */
+  .enrollments-table td {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #f0f1f3;
+    text-align: left;
+  }
+
+  .enrollments-table td:last-child {
+    border-bottom: none;
+  }
+
+  /* Label shown via data-label, since thead is visually hidden */
+  .enrollments-table td::before {
+    content: attr(data-label);
+    font-size: 12px;
+    font-weight: 600;
+    color: #8a8f98;
+    text-align: left;
+  }
+
+  .col-contact .contact-line {
+    justify-content: flex-start;
+  }
+
+  .enrollments-table td.col-plan .plan-name,
+  .enrollments-table td.col-plan .plan-teacher {
+    text-align: left;
+  }
+
+  /* Name cell reads better as a card header: no label, sits above everything else */
+  .enrollments-table td.col-name {
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #f0f1f3;
+  }
+  .enrollments-table td.col-name::before {
+    display: none;
+  }
+
+  /* Action buttons: grouped into a row via the .action-buttons wrapper,
+     sitting below the label like every other cell */
+  .enrollments-table td.col-action {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .edit-btn {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+  }
+
+  .name-text {
+    font-size: 14px;
+  }
+}
