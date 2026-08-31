@@ -4,10 +4,10 @@ import { StudentService } from '@shared/student.service';
 
 
 
-export const CouserGuard:CanActivateFn = (route,state)=>{
+export const StudentRegistrationGuard:CanActivateFn = (route,state)=>{
   const router = inject(Router);
-  const teacherServ = inject(StudentService);
-    if (teacherServ.isSelectionComplete()) {
+  const CourseServ = inject(StudentService);
+    if (CourseServ.isCoursesSelected()) {
       return true;
     }
   return router.navigate(['/']);

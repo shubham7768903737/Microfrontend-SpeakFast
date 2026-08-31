@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { CouserGuard } from '../core/gurards/coursesGuard.guard';
+import { StudentRegistrationGuard } from '../core/gurards/registrationGuard.guard';
 
 export const routes: Routes = [
     {
@@ -16,6 +17,7 @@ export const routes: Routes = [
         path: 'student-registration',
         loadComponent: () => import('./components/student-registration-form/student-registration-form').then(m => m.StudentRegistrationForm),
         title: 'Student-Registration',
+        canActivate: [StudentRegistrationGuard]
     },
      {
         path: 'course',
