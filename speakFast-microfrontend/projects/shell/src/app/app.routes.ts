@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+import { TokenService } from '@shared/token.service';
+import { Routes, Router } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/module-federation';
 
 export const routes: Routes = [

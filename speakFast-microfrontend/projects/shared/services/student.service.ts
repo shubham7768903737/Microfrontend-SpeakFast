@@ -12,6 +12,7 @@ export class StudentService {
      soltId = new BehaviorSubject<string|null>(null);
      courseName = new BehaviorSubject<string|null>(null);
      coursePrice = new BehaviorSubject<string|null>(null);
+     isRegistrationDone = new BehaviorSubject<boolean>(false);
      emailId = new BehaviorSubject<string>(  sessionStorage.getItem('forgotPassEmail') ?? '');
 
     constructor(private http:HttpClient){}
@@ -27,13 +28,21 @@ export class StudentService {
     isCoursesSelected(): boolean {
       return !!this.courseName.getValue() && !!this.coursePrice.getValue();
     }
-    
+
     getTeacherId():string|null{
       return this.teacherId.getValue();
     }
 
     setSlotId(data: string){
        this.soltId.next(data);
+    }
+
+    setRegistrationStatus(data: boolean){
+        this.isRegistrationDone.next(data);
+    }
+
+    getRegistrationStatus():boolean{
+      return this.isRegistrationDone.getValue();
     }
 
     getSlotId():string|null{
