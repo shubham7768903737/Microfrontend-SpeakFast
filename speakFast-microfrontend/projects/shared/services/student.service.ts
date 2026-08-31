@@ -23,6 +23,10 @@ export class StudentService {
     isSelectionComplete(): boolean {
       return !!this.teacherId.getValue() && !!this.soltId.getValue();
     }
+
+    isCoursesSelected(): boolean {
+      return !!this.courseName.getValue() && !!this.coursePrice.getValue();
+    }
     
     getTeacherId():string|null{
       return this.teacherId.getValue();
@@ -84,4 +88,6 @@ export class StudentService {
             body
         );
     }
+
+
 }
