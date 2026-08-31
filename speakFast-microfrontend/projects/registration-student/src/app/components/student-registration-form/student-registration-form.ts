@@ -289,6 +289,7 @@ ngAfterViewInit(): void {
             'Success'
           );
           this.registrationForm.reset();
+          this.studentServ.setRegistrationStatus(true);
           this.route.navigate(['payment']);
         }, error: (err: any) => {
 

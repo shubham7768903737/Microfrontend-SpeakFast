@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { CouserGuard } from '../core/gurards/coursesGuard.guard';
 import { StudentRegistrationGuard } from '../core/gurards/registrationGuard.guard';
+import { paymentGuard } from '../core/gurards/paymentGuard.guard';
 
 export const routes: Routes = [
     {
@@ -24,5 +25,11 @@ export const routes: Routes = [
         loadComponent: () => import('./components/courses/courses').then(m => m.Courses),
         title: 'Courses',
         canActivate: [CouserGuard]
+    },
+         {
+        path: 'payment',
+        loadComponent: () => import('./components/payment/payment').then(m => m.Payment),
+        title: 'Payment',
+        canActivate: [paymentGuard]
     },
 ];
